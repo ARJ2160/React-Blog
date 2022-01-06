@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // <----------------------- Creating Two Schemas ---------------------------------->
 
-const userSchema = mongoose.model({
+const usersSchema = mongoose.Schema({
     id: { type: String },
     firstName: { type: String },
     lastName: { type: String },
@@ -13,5 +13,13 @@ const postsSchema = mongoose.Schema({
     id: { type: String },
     title: { type: String },
     postBody: { type: String },
-    image: { type:  },
 })
+
+//<----------------------- Creating Two Models ---------------------------------->
+const Users = mongoose.model("College", usersSchema);
+const Posts = mongoose.model("Posts", postsSchema);
+
+//<----------------------- Export Models ---------------------------------->
+module.exports = {
+    Users, Posts
+}
