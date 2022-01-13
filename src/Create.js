@@ -5,12 +5,13 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("Vishwajeet");
+  const [imgsrc, setImg] = useState("");
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = { title, body, author };
+    const blog = { title, body, author, imgsrc };
     fetch("http://localhost:8000/blogs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -43,6 +44,13 @@ const Create = () => {
           <option value="Vishwajeet">Vishwajeet</option>
           <option value="ARJ">ARJ</option>
         </select>
+
+        <label>Enter Image Path</label>
+        <input type="text"
+          required
+          value={imgsrc}
+          onChange={(e) => setImg(e.target.value)}
+        ></input>
 
         {!isPending && <button>Add Blog</button>}
         {isPending && <button disabled>Loading</button>}
