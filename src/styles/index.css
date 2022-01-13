@@ -3,6 +3,8 @@
 /* base styles */
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   
 }
 
@@ -16,7 +18,7 @@
 .homepage {
   background-color: #323232;
   color: #ffffff;
-  padding-bottom: 10rem;
+  padding-bottom: 4rem;
 }
 
 .home-profile-section {
@@ -133,6 +135,11 @@
 }
 
 
+
+
+
+
+
 /* create new blog form */
 .create {
   max-width: 400px;
@@ -166,6 +173,102 @@
   cursor: pointer;
 }
 
+
+
+
+/* Blog Details */
+
+
+
+.blog-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 5rem;
+  padding-bottom: 3rem;
+}
+
+
+.top-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.top-profile-picture img {
+  border-radius: 50%;
+  width: 60px;
+  height: auto;
+}
+
+.top-profile-name {
+  margin-top: 1.25rem;
+  font-family: 'Bahnschrift Light';
+  text-transform: uppercase;
+  color: rgb(167, 167, 167);
+  font-weight: 500;
+}
+
+.blog-main-content {
+  width: 100%;
+}
+
+
+
+.main-content-header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.content-title-date {
+  grid-column-start: 1;
+  grid-column-end: 7;
+  grid-row-start: 1;
+  z-index: 5;
+  background: #1F1F1F;
+  height: max-content;
+  align-self: end;
+  padding: 40px;
+}
+
+.content-image {
+  grid-column-start: 5;
+  grid-column-end: 13;
+  grid-row-start: 1;
+  z-index: 4;
+}
+
+.content-image img {
+  width: 100%;
+  height: 392px;
+  object-fit: cover;
+  text-align: end;
+  vertical-align: bottom;
+}
+
+.blogdetails-title {
+  font-size: 36px;
+  color: #FDA639;
+  font-weight: 500;
+  padding-bottom: 20px;
+}
+
+.blogdetails-date {
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.blogdetails-body {
+  background-color: #1F1F1F;
+  color: white;
+  padding: 40px;
+}
+
 .blog-details button {
   background: #0059ff;
   color: #fff;
@@ -177,12 +280,12 @@
   margin-top: 1rem;
 }
 
-.blog-body {
+.blogdetails-body {
   margin-top: 2rem;
   white-space: pre-wrap;
 }
 
-.blog-author {
+.blogdetails-author {
   margin-top: 1rem;
 }
 
