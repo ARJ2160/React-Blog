@@ -5,9 +5,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const router = require("./routes")
 const app = express();
+require('dotenv').config()
 
 //CONNECTING TO DATABASE
-mongoose.connect("mongodb+srv://admin:admin@blog-cluster.jgv4u.mongodb.net/blog-cluster?retryWrites=true&w=majority",
+mongoose.connect(`mongodb+srv://${process.env.REACT_APP_DB_USER}:${process.env.REACT_APP_DB_PASSWORD}@blog-cluster.jgv4u.mongodb.net/${process.env.REACT_APP_DB_NAME}?retryWrites=true&w=majority`,
     { useNewUrlParser: true, })
         .then(() => {
             console.log("Successfully Connected to Database");
