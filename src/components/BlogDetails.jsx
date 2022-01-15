@@ -13,11 +13,11 @@ const BlogDetails = () => {
     const history = useHistory()
 
     const handleDelete = () => {
-        fetch('http://localhost:5000/postsdata/' + blog._id, { method: 'DELETE' })
-            .then(() => {
-                history.push('/');
-            })
-            .catch((err) => console.log(err))
+      fetch('http://localhost:5000/postsdata/' + blog._id, { method: 'DELETE' })
+          .then(() => {
+              history.push('/');
+          })
+          .catch((err) => console.log(err))
     }
 
   return (

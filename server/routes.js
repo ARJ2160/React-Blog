@@ -44,26 +44,26 @@ router.post("/postsdata", (req, res) => {
     Posts.create(db, err => {
         if (!err) {
             console.log("Posted on Server");
-            
+            return res.status(200).json({status: 'success'});
         } else {
             throw new Error(err)
             
         }
-        return null
+        
     })
 })
 
 //<---------------------------- Delete Posts from Database ---------------------------->
 router.delete("/postsdata/:id", (req, res) => {
-    const id = req.params._id
-    Posts.deleteOne(id, (err, data) => {
+ 
+    Posts.findOneAndRemove({_id: req.params.id}, (err, data) => {
         if (err) {
             console.log(err);
             throw new Error(err)
         } else {
-               
+            console.log(data);
+            return res.status(200).json({status: 'success'});
         }
-        return null
     })
 })
 
