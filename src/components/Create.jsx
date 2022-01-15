@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+const { v4: uuidv4 } = require('uuid');
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("Vishwajeet");
-  const [imgsrc, setImg] = useState("");
+  const [imagesrc, setImg] = useState("");
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = { title, body, author, imgsrc };
-    fetch("http://localhost:8000/blogs", {
+    const blog = { _id: uuidv4(), title, author, postBody: body, imagesrc };
+    fetch("http://localhost:5000/postsdata", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog),
@@ -48,7 +49,7 @@ const Create = () => {
         <label>Enter Image Path</label>
         <input type="text"
           required
-          value={imgsrc}
+          value={imagesrc}
           onChange={(e) => setImg(e.target.value)}
         ></input>
 

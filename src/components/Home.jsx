@@ -1,19 +1,18 @@
-
 import BlogList from "./BlogList";
-import useFetch from "./useFetch";
+import useFetch from "../useFetch";
 
-import profile_image from "./images/picture.jpg";
+import profile_image from "../images/picture.jpg";
 
 const Home = () => {
 
-  const { data: blogs, isPending, errorMsg } = useFetch("http://localhost:8000/blogs")
+  const { data: blogs, isPending, errorMsg } = useFetch("http://localhost:5000/postsdata")
 
   return (
     <div className="homepage">
       <div className="home-profile-section">
         <div className="profile--content">
           <div className="profile-picture">
-            <img src={profile_image} alt="profile-photo" />
+            <img src={profile_image} alt="profile-pic" />
           </div>
           <div className="profile-details">
               <div className="details-name"><h3>Vishwajeet Deshmukh</h3></div>

@@ -1,31 +1,30 @@
 //jshint esversion:6
-
 //DEFINE BOILERPLATE
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const router = require("./routes")
 const app = express();
+require('dotenv').config()
 
 //CONNECTING TO DATABASE
-mongoose.connect("mongodb+srv://ARJ:vd7p1VbnxRk7qZ6K@cluster0.3yitx.mongodb.net/datadb?retryWrites=true&w=majority",
+mongoose.connect(`mongodb+srv://${process.env.REACT_APP_DB_USER}:${process.env.REACT_APP_DB_PASSWORD}@blog-cluster.jgv4u.mongodb.net/${process.env.REACT_APP_DB_NAME}?retryWrites=true&w=majority`,
     { useNewUrlParser: true, })
         .then(() => {
-            console.log("Database Connection Successfull");
+            console.log("Successfully Connected to Database");
         })
-        .catch((err) => {
+        .catch(err => {
             console.log(err);
         });
 
 //APP CONFIG
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
-app.use("/", require("./routes"));
-
+app.use("/", router);
 
 //DEFINES THE PORT FOR THE APP TO LISTEN TO
 let port = process.env.PORT;
+// eslint-disable-next-line eqeqeq
 if(port == null || port == ""){
     port = 5000;
 }
@@ -35,6 +34,6 @@ app.listen(port, () => {
     if (port === 5000) {
         console.log("Server running on port 5000");
     } else {
-        console.log("Server running on PORT");
+        console.log(`Server running on ${port}`);
     }
 });
