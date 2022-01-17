@@ -26,16 +26,17 @@ router.get("/postsdata", (req, res) => {
 //<------------- Get Specific Posts from Database --------------->
 
 router.get("/postsdata/:_id", (req, res) => {
+    
     const id = req.params._id;
-        Posts.findById(id, (err, data) => {
-            if (err) {
-                res.status(500).send(err);
-                throw new Error(err)
-            } else {
-                res.status(201).send(data);
-            }
-            return data;
-        })
+    Posts.findById(id, (err, data) => {
+        if (err) {
+            res.status(500).send(err);
+            throw new Error(err)
+        } else {
+            res.status(201).send(data);
+        }
+        return data;
+    })
 })
 
 //<---------------------------- Post On the Posts Database ---------------------------->
