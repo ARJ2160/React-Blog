@@ -1,14 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
-const { v4: uuidv4 } = require('uuid');
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
+import ReactQuill from 'react-quill';
+
+// import {getContents} from "node_modules/quill/dist/quill.js"
+
+const { v4: uuidv4 } = require("uuid");
+
+
 
 const Create = () => {
+  const modules = { 
+    toolbar : [
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'link','code'],        // toggled buttons
+    ['image', 'blockquote', 'code-block'],
+  
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  
+    // [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    // [{ 'font': [] }],
+  
+    ['clean']                                         // remove formatting button
+  ]}
+ 
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [author, setAuthor] = useState("Vishwajeet");
+  const [author, setAuthor] = useState("");
   const [imagesrc, setImg] = useState("");
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
+  const jsonified = JSON.stringify(body);
+ 
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,35 +53,68 @@ const Create = () => {
 
   return (
     <div className="create">
-      <form onSubmit={handleSubmit}>
-        <label>Blog Title</label>
-        <input
-          type="text"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <label>Blog Body</label>
-        <textarea
-          required
-          value={body}
-          rows={10}
-          onChange={(e) => setBody(e.target.value)}
-        ></textarea>
-        <label>Blog Author</label>
-        <select value={author} onChange={(e) => setAuthor(e.target.value)}>
-          <option value="Vishwajeet">Vishwajeet</option>
-          <option value="ARJ">ARJ</option>
-        </select>
+      <div className="create-header">
+        <h2 className="create-heading">Write Post</h2>
+        <button className="preview-button">Preview</button>
+      </div>
+      <form onSubmit={handleSubmit} id="form1">
+        <div className="create-container">
+          <div className="blog-body">
+            <div id="editor-container">
+            <ReactQuill value={body} onChange={setBody} modules={modules} theme="snow"/>
+            </div>
+            
 
-        <label>Enter Image Path</label>
-        <input type="text"
-          required
-          value={imagesrc}
-          onChange={(e) => setImg(e.target.value)}
-        ></input>
+            {/* <label>Blog Body</label>
+            <textarea
+              required
+              value={body}
+              rows={10}
+              onChange={(e) => setBody(e.target.value)}
+            ></textarea> */}
+          </div>
 
-        {!isPending && <button>Add Blog</button>}
+          <div className="create-right-sidebar">
+            {!isPending && (
+              <button type="submit" form="form1" className="submit-button">
+                Publish
+              </button>
+            )}
+
+            <div className="create-right-inputs">
+              <div className="input-group">
+                <label>Blog Title</label>
+                <input
+                  type="text"
+                  required
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Thumbnail Image</label>
+                <input
+                  type="text"
+                  required
+                  value={imagesrc}
+                  onChange={(e) => setImg(e.target.value)}
+                ></input>
+              </div>
+
+              <div className="input-group">
+                <label>Blog Author</label>
+                <input
+                  type="text"
+                  required
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                ></input>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {isPending && <button disabled>Loading</button>}
       </form>
     </div>

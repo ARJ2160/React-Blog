@@ -1,7 +1,7 @@
 @import url(/src/styles/fonts.css);
 
 /* base styles */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -142,35 +142,153 @@
 
 /* create new blog form */
 .create {
-  max-width: 400px;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  max-width: 1400px;
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
 }
+
+.preview-button {
+  font-size: 16px;
+  font-family: 'Lota Grotesque';
+  color: #0091FF;
+  font-weight: 500;
+  padding: 8px 15px;
+  background: none;
+  border: 2px solid #0091FF;
+}
+
+.create-header {
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-heading {
+  color: #0091FF;
+  font-size: 24px;
+  
+}
+
+.create-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.blog-body {
+  width: 900px;
+  margin-top: 2rem;
+}
+
+.create-right-sidebar {
+  margin-top: -40px;
+  width: 350px;
+}
+
+.create-right-sidebar input {
+  width: 100%;
+}
+
+.create-right-inputs {
+  margin-top: 2rem;
+}
+
+.create-right-inputs label{
+  color: #0091FF;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.create-right-inputs input {
+  background: #1F1F1F;
+  border: none;
+  border-radius: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  caret-color: #ffffff;
+  font-family: 'Lota Grotesque';
+  color: white;
+
+}
+
+.input-group {
+  margin-bottom: 2rem;
+}
+
+.create-right-inputs input:focus {
+  border: none;
+  border-radius: none;
+  outline: none;
+}
+
 .create label {
   text-align: left;
   display: block;
   font-weight: 600;
 }
-.create h2 {
-  font-size: 20px;
-  color: #0059ff;
-  margin-bottom: 30px;
-}
-.create input, .create textarea, .create select {
-  width: 100%;
-  padding: 6px 10px;
-  margin: 30px 0;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  display: block;
-}
-.create button {
-  background: #0059ff;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
+
+
+.create .submit-button {
+  font-size: 16px;
+  font-family: 'Lota Grotesque';
+  color: #1F1F1F;
+  font-weight: 500;
+  padding: 8px 15px;
+  background: #FDA639;
+  border: none;
   cursor: pointer;
+}
+
+
+/* Editor Container */
+
+#editor-container .ql-editor {
+  background: #1F1F1F;
+}
+
+#editor-container .ql-toolbar.ql-snow {
+  border: none;
+  background-color: #1F1F1F;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  position: sticky;
+  z-index: 2;
+  top: 0;
+}
+
+#editor-container .ql-container.ql-snow {
+  border: none;
+}
+
+#editor-container .ql-snow.ql-toolbar button svg, .ql-snow .ql-toolbar button svg {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(152deg) brightness(101%) contrast(102%);
+}
+
+#editor-container .ql-snow .ql-picker-label::before {
+  color: #ffffff;
+}
+
+#editor-container .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(152deg) brightness(101%) contrast(102%);
+}
+
+#editor-container .ql-snow.ql-toolbar button.ql-active {
+  filter: invert(38%) sepia(90%) saturate(3021%) hue-rotate(189deg) brightness(105%) contrast(103%);
+}
+
+#editor-container .ql-snow .ql-editor code, .ql-snow .ql-editor pre {
+  background: #000;
+}
+
+#editor-container .ql-editor {
+  padding: 1.5rem;
+  min-height: 30rem;
+  caret-color: white;
+  color: white;
 }
 
 
@@ -288,4 +406,6 @@
 .blogdetails-author {
   margin-top: 1rem;
 }
+
+
 

@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import useFetch from "../useFetch";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
+import parse from "html-react-parser";
+
 
 import profile_image from "../images/picture.jpg";
 
@@ -19,6 +21,14 @@ const BlogDetails = () => {
           })
           .catch((err) => console.log(err))
     }
+
+    const handleParsing = () => {
+      const parsedBody = parse(blog.postBody);
+      return parsedBody
+    }
+
+    
+    
 
   return (
     <div className="blog-details">
@@ -44,7 +54,7 @@ const BlogDetails = () => {
             </div>
           </div>
 
-          <div className="blogdetails-body"><p>{`${blog.postBody}`}</p></div>
+          <div className="blogdetails-body"><p>{handleParsing()}</p></div>
           <button className="blogdetails-delete" onClick={handleDelete}>Delete Me</button>
         </article>
       )}
