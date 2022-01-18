@@ -10,7 +10,7 @@ const BlogList = ({ blogs }) => {
     const handleExcerpt = (blogBody) => {
         const wordarray = blogBody.split(" ").slice(0, 18).join(" ");
         console.log(wordarray);
-        const stringing = wordarray.replace(/<\/?[^>]+(>|$)/g, "");
+        const stringing = wordarray.replace(/<\/?[^>]+(>|$)/g, " ");
         return stringing;
     }
 
