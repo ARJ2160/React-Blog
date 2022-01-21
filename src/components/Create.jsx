@@ -1,6 +1,5 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import ReactQuill from 'react-quill';
 
@@ -63,15 +62,6 @@ const Create = () => {
             <div id="editor-container">
             <ReactQuill value={body} onChange={setBody} modules={modules} theme="snow"/>
             </div>
-            
-
-            {/* <label>Blog Body</label>
-            <textarea
-              required
-              value={body}
-              rows={10}
-              onChange={(e) => setBody(e.target.value)}
-            ></textarea> */}
           </div>
 
           <div className="create-right-sidebar">

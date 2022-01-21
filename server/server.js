@@ -8,8 +8,8 @@ const app = express();
 require('dotenv').config()
 
 //CONNECTING TO DATABASE
-mongoose.connect(`mongodb+srv://${process.env.REACT_APP_DB_USER}:${process.env.REACT_APP_DB_PASSWORD}@blog-cluster.jgv4u.mongodb.net/${process.env.REACT_APP_DB_NAME}?retryWrites=true&w=majority`,
-    { useNewUrlParser: true, })
+mongoose.connect(`mongodb+srv://${process.env.REACT_APP_DB_USER}:${process.env.REACT_APP_DB_PASSWORD}@blog-cluster.jgv4u.mongodb.net/${process.env.REACT_APP_DB_NAME}?retryWrites=true&w=majority&ssl=true`,
+    { useNewUrlParser: true, useUnifiedTopology : true })
         .then(() => {
             console.log("Successfully Connected to Database");
         })

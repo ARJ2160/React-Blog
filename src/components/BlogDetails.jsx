@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useFetch from "../useFetch";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
@@ -55,6 +55,11 @@ const BlogDetails = () => {
           </div>
 
           <div className="blogdetails-body"><p>{handleParsing()}</p></div>
+          <Link to={`/postsdata/update/${blog._id}`}>
+            <button className="blogdetails-delete">
+              Edit Post
+            </button>
+          </Link>       
           <button className="blogdetails-delete" onClick={handleDelete}>Delete Me</button>
         </article>
       )}

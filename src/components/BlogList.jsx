@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
-import parse from "html-react-parser";
 
 
 const BlogList = ({ blogs }) => {
@@ -9,7 +8,6 @@ const BlogList = ({ blogs }) => {
 
     const handleExcerpt = (blogBody) => {
         const wordarray = blogBody.split(" ").slice(0, 18).join(" ");
-        console.log(wordarray);
         const stringing = wordarray.replace(/<\/?[^>]+(>|$)/g, " ");
         return stringing;
     }

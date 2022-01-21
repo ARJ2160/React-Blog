@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url(/src/styles/fonts.css);
 
 /* base styles */
@@ -63,6 +66,7 @@
   max-width: 800px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
+  font-family: 'Lota Grotesque';
 }
 .navbar h1 {
   color: #0059ff;
@@ -406,6 +410,3 @@
 .blogdetails-author {
   margin-top: 1rem;
 }
-
-
-
