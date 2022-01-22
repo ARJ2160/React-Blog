@@ -7,7 +7,8 @@ const BlogList = ({ blogs }) => {
 
     const handleExcerpt = (blogBody) => {
         const wordarray = blogBody.split(" ").slice(0, 18).join(" ");
-        return wordarray;
+        const stringing = wordarray.replace(/<\/?[^>]+(>|$)/g, " ");
+        return stringing;
     }
 
     return (
@@ -20,7 +21,7 @@ const BlogList = ({ blogs }) => {
                                 <div className="blog-thumbnail" style={{ backgroundImage: `url(${imagesrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}  ></div>
                                 <div className="blog-preview-bg">
                                     <h2>{title}</h2>
-                                    <p className="blog-excerpt">{handleExcerpt(postBody) + " ..."}</p>
+                                    <p className="blog-excerpt w-auto overflow-x-hidden">{handleExcerpt(postBody) + " ..."}</p>
                                     <p className="blog-author">{author}</p>
                                     <p className="blog-date">{blogDate}</p>
                                 </div>

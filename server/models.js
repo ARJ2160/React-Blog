@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 
 const usersSchema = mongoose.Schema({
     _id: String,
+    email: String,
     firstName: String,
     lastName: String,
     password: String,
+    role: String,
 })
 
 const postsSchema = new Schema({

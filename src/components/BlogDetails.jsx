@@ -1,16 +1,20 @@
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getAdminStatus } from "../redux/adminSlice";
 import useFetch from "../useFetch";
 import moment from "moment";
+import parse from "html-react-parser";
 
 import profile_image from "../images/picture.jpg";
 
 const BlogDetails = () => {
-
+  
+  const isAdmin = useSelector(getAdminStatus)
   let blogDate = moment().format('D MMM YYYY');
   const { id } = useParams();
-  const { data: blog, isPending, errorMsg } = useFetch("http://localhost:5000/postsdata/" + id);
   const history = useHistory()
+  const { data: blog, isPending, errorMsg } = useFetch("http://localhost:5000/postsdata/" + id);
 
   const handleDelete = () => {
     fetch('http://localhost:5000/postsdata/' + blog._id, { method: 'DELETE' })
@@ -18,6 +22,10 @@ const BlogDetails = () => {
       .catch(err => console.log(err))
   }
 
+  const handleParsing = () => {
+    const parsedBody = parse(blog.postBody);
+    return parsedBody
+  }
   return (
     <div className="blog-details">
       <div className="top-profile">
@@ -41,13 +49,16 @@ const BlogDetails = () => {
                 <img className="blog-image" src={blog.imagesrc} alt="blog-pic" />
             </div>
           </div>
-          <div className="blogdetails-body"><p>{`${blog.postBody}`}</p></div>
+          <div className="blogdetails-body">{handleParsing()}</div>
           <Link to={`/postsdata/update/${blog._id}`}>
-            <button className="blogdetails-delete">
+            <button
+                className={isAdmin === "admin" ? "blogdetails-edit visible mr-10" : "invisible blogdetails-edit"}>
               Edit Post
             </button>
-          </Link>            
-          <button className="blogdetails-delete" onClick={handleDelete}>Delete Me</button>
+          </Link>
+          <button
+                className={isAdmin === "admin" ? "blogdetails-delete visible" : "invisible blogdetails-delete"}
+                onClick={handleDelete}>Delete Me</button>
         </article>
       )}
     </div>

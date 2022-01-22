@@ -1,6 +1,5 @@
 import BlogList from "./BlogList";
 import useFetch from "../useFetch";
-
 import profile_image from "../images/picture.jpg";
 
 const Home = () => {
