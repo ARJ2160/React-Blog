@@ -28,7 +28,7 @@ const Signup = () => {
 
     const signUp = () => {
         let { email, firstName, lastName, password } = formValues
-        const userData = { _id: uuidv4(), email, firstName, lastName, password: md5(password), role: "admin" }
+        const userData = { _id: uuidv4(), email, firstName, lastName, password: md5(password), role: "user" }
         fetch("http://localhost:5000/users/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
