@@ -54,7 +54,7 @@ const EditPosts = () => {
             body: JSON.stringify(blog),
         }).then(() => {
             setIsPending(false);
-            history.push('/')
+            history.push(`/postsdata/${id}`)
         }).catch(err => console.log(err))
     }
     
