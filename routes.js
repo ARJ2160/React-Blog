@@ -71,7 +71,6 @@ router.put("/postsdata/update/:id", (req, res, next) => {
         { new: true, useFindAndModify: true },
         err => {
             if (err) {
-                console.log(err);
                 throw new Error(err)
             } else {
                 return res.status(200).json({ status: 'success' });
@@ -86,7 +85,6 @@ router.delete("/postsdata/:id", (req, res) => {
 
     Posts.findOneAndRemove({_id: req.params.id}, err => {
         if (err) {
-            console.log(err);
             throw new Error(err)
         } else {
             return res.status(200).json({status: 'success'});
@@ -130,7 +128,6 @@ router.post("/users/signin", async (req, res) => {
         const passwordsMatch = await Users.find({ password: md5(password) }).select('password').limit(1)
         const hasAdminAccess = await Users.findOne({ password: md5(password) }).select('role')  
         if (passwordsMatch.length > 0) {
-            console.log(passwordsMatch);
             // Check if user has Admin rights then return custom HTTP CODE
             if (hasAdminAccess.role === "admin") return res.status(209).json({ status: 'success' })
             else return res.status(200).json({ status: 'success' });
