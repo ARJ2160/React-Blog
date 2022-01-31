@@ -34,9 +34,6 @@ const Navbar = () => {
                     to="/">Sign Out
                 </Link>
             </div>
-            {/* <div className={flag === "admin" ? `nav-link-invisible` : `nav-link-visible`} >
-                Hello {}
-            </div> */}
         </nav>
      );
 }
