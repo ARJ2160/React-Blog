@@ -31,7 +31,7 @@ const EditPosts = () => {
     const { id } = useParams();
     
     const getEditBlogData = async () => {
-        await axios.get("http://localhost:5000/postsdata/" + id)
+        await axios.get((process.env.PORT || "http://localhost:5000/postsdata/") + id)
             .then(res => {
                 const {title, postBody, author, imagesrc } = res.data
                 setTitle(title)
@@ -48,7 +48,7 @@ const EditPosts = () => {
         e.preventDefault()
         
         const blog = { title, author, postBody: body, imagesrc };
-        fetch('http://localhost:5000/postsdata/update/' + id, {
+        fetch((process.env.PORT || "http://localhost:5000/postsdata/update/") + id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog),

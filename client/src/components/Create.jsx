@@ -31,7 +31,7 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const blog = { _id: uuidv4(), title, author, postBody: body, imagesrc };
-    fetch("http://localhost:5000/postsdata", {
+    fetch((process.env.PORT || "http://localhost:5000/postsdata"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog),
