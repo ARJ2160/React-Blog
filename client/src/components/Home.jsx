@@ -4,7 +4,7 @@ import profile_image from "../images/picture.jpg";
 
 const Home = () => {
 
-  const { data: blogs, isPending, errorMsg } = useFetch(process.env.PORT || "http://localhost:5000/postsdata")
+  const { data: blogs, isPending, errorMsg } = useFetch((process.env.PORT || "http://localhost:5000") + "/postsdata")
 
   return (
     <div className="homepage">
