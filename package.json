@@ -5,8 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroky-postbuild": "npm run install-client && npm run build",
+    "client": "cd client && npm start",
     "start": "node server.js"
-  },
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

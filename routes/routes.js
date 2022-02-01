@@ -1,8 +1,8 @@
 const express = require('express');
 const md5 = require('md5');
 const router = express.Router();
-const { Users, Posts } = require("./models");
-// let userName = ""
+const { Users, Posts } = require("../models/models");
+
 //<---------------------------------- CRUD OPERATIONS FOR POSTS ------------------------------------------>
 
 router.get("/", () => {
@@ -136,15 +136,5 @@ router.post("/users/signin", async (req, res) => {
         }
     }
 })
-
-
-if (process.env.NODE_ENV == "production") {
-    const path = require('path')
-    
-    router.get("/", (req, res) => {
-        app.use(express.static(path.resolve(__dirname, 'client', 'build')))
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-    })
-}
 
 module.exports = router;

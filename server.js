@@ -3,7 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const router = require("./routes")
+const router = require("./routes/routes")
 const app = express();
 require('dotenv').config()
 const { MONGODB_URI } = require("./config/keys")
@@ -23,15 +23,19 @@ app.use(cors());
 app.use(express.json({ limit: "5mb"}));
 app.use("/", router);
 
+if (process.env.NODE_ENV == "production") {
+    const path = require('path')
+    
+    router.get("/", (req, res) => {
+        app.use(express.static('client/build'))
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    })
+}
 
 //DEFINES THE PORT FOR THE APP TO LISTEN TO
 let port = process.env.PORT || 5000;
 
 //APP LISTENS TO PORT
 app.listen(port, () => {
-    if (port === 5000) {
-        console.log("Server running on port 5000");
-    } else {
-        console.log(`Server running on ${port}`);
-    }
+    console.log(`Server running on ${port}`);
 });
