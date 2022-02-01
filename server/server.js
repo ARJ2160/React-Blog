@@ -8,7 +8,6 @@ const app = express();
 require('dotenv').config()
 const { MONGODB_URI } = require("./config/keys")
 const path = require("path")
-let port = process.env.PORT || 5000;
 
 //CONNECTING TO DATABASE
 mongoose.connect(MONGODB_URI,
@@ -23,12 +22,17 @@ mongoose.connect(MONGODB_URI,
 //APP CONFIG
 app.use(cors());
 app.use(express.json({ limit: "5mb" }));
-app.use(express.static(path.join(__dirname, "client", "build")))
 app.use("/", router);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
+
+if (process.env.NODE_ENV == "production") {
+    app.use(express.static("client/build"));
+}
+
+let port = process.env.PORT || 5000;
 
 //APP LISTENS TO PORT
 app.listen(port, () => {

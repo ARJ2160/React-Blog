@@ -1,1 +1,0 @@
-web: PORT=$PORT node .client/build/index.html
