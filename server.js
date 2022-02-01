@@ -24,18 +24,6 @@ app.use(express.json({ limit: "5mb"}));
 app.use("/", router);
 
 
-if (process.env.NODE_ENV === "production") {
-    const path = require('path')
-    
-    app.get("/", (req, res) => {
-        app.use(express.static(path.resolve(__dirname, 'client', 'build')))
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-    })
-}
-
-
-
-
 //DEFINES THE PORT FOR THE APP TO LISTEN TO
 let port = process.env.PORT || 5000;
 
