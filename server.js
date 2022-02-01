@@ -7,6 +7,8 @@ const router = require("./routes/routes")
 const app = express();
 require('dotenv').config()
 const { MONGODB_URI } = require("./config/keys")
+const path = require("path")
+let port = process.env.PORT || 5000;
 
 //CONNECTING TO DATABASE
 mongoose.connect(MONGODB_URI,
@@ -20,20 +22,13 @@ mongoose.connect(MONGODB_URI,
 
 //APP CONFIG
 app.use(cors());
-app.use(express.json({ limit: "5mb"}));
+app.use(express.json({ limit: "5mb" }));
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use("/", router);
 
-if (process.env.NODE_ENV == "production") {
-    const path = require('path')
-    
-    router.get("/", (req, res) => {
-        app.use(express.static('client/build'))
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-    })
-}
-
-//DEFINES THE PORT FOR THE APP TO LISTEN TO
-let port = process.env.PORT || 5000;
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 //APP LISTENS TO PORT
 app.listen(port, () => {

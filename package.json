@@ -5,10 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroky-postbuild": "npm run install-client && npm run build",
-    "client": "cd client && npm start",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "start": "node server.js"
 },
   "keywords": [],
@@ -20,5 +17,8 @@
     "express": "^4.17.2",
     "md5": "^2.3.0",
     "mongoose": "^6.1.8"
+  },
+  "engines": {
+    "node": "16.13.1"
   }
 }
