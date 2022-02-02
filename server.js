@@ -6,11 +6,11 @@ const cors = require('cors');
 const router = require("./routes/routes")
 const app = express();
 require('dotenv').config()
-const { MONGODB_URI } = require("./config/keys")
 const path = require("path")
+let port = process.env.PORT || 5000;
 
 //CONNECTING TO DATABASE
-mongoose.connect(MONGODB_URI,
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://admin:admin@blog-cluster.jgv4u.mongodb.net/blog-cluster?retryWrites=true&w=majority&ssl=true",
     { useNewUrlParser: true, useUnifiedTopology : true })
         .then(() => {
             console.log("Successfully Connected to Database");
@@ -26,12 +26,7 @@ app.use("/", router);
 
 if (process.env.NODE_ENV == "production") {
     app.use(express.static("client/build"));
-    app.get("*", (req, res) => { 
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    })
 }
-
-let port = process.env.PORT || 5000;
 
 //APP LISTENS TO PORT
 app.listen(port, () => {
