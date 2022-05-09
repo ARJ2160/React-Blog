@@ -14,7 +14,7 @@ const Home = () => {
             {/* <img src={profile_image} alt="profile-pic" /> */}
           </div>
           <div className="profile-details">
-              <div className="details-name"><h3>Blog Project</h3></div>
+              <div className="details-name"><h3>Blog Project Vishwajeet</h3></div>
               {/* <div className="details-bio"><p>I am not teaching, I am learning aloud.</p></div> */}
           </div>
         </div>
