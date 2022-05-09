@@ -29,12 +29,12 @@ const BlogDetails = () => {
   return (
     <div className="blog-details">
       <div className="top-profile">
-        <div className="top-profile-picture">
+        {/* <div className="top-profile-picture">
           <img src={profile_image} alt="profile-pic-top" />
         </div>
         <div className="top-profile-name">
           <p>Vishwajeet Deshmukh</p>
-        </div>
+        </div> */}
       </div>
       {isPending && <div>Loading...</div>}
       {errorMsg && <div>{errorMsg}</div>}
